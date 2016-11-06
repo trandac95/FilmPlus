@@ -25,7 +25,7 @@
         android:text="Ứng dụng xem phim"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textStyle="normal|bold"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/colorgou" />
 
 </LinearLayout>
