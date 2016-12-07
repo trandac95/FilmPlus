@@ -20,4 +20,10 @@
         />
 
     <include layout="@layout/layout_button"/>
+
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/vdVideo" />
+
 </LinearLayout>

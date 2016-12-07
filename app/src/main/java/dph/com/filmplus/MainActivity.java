@@ -1,8 +1,14 @@
 package dph.com.filmplus;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +18,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.MediaController;
+import android.widget.VideoView;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ListView lsvVideo;
+    VideoAdapter adapter;
+    List<Video> dsVideo;
+    int position = 0;
+    //connectedInternet cd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +59,57 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //addcontrol();
+        final VideoView vdVideo = (VideoView) findViewById(R.id.vdVideo);
+        vdVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                vdVideo.seekTo(position);
+            }
+        });
+    }
+    void addcontrol()
+    {
+        /*lsvVideo = (ListView) findViewById(R.id.lst_Video);
+        dsVideo = new ArrayList<>();
+        dsVideo.add(new Video("Fiml 1","a"));
+        adapter = new VideoAdapter(MainActivity.this,R.layout.fiml_item,dsVideo);
+        lsvVideo.setAdapter(adapter);
+        adapter.notifyDataSetChanged();*/
+
     }
 
+//    public class GetData extends AsyncTask<Void,Void,Void> {
+//        Context context;
+//        ProgressDialog pd;
+//        GetData(Context context) {
+//            this.context = context;
+//        }
+//get data when load app
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            // cho nay chua chac
+//            pd = new ProgressDialog(getBaseContext());
+//            pd.setTitle("Get data");
+//            pd.setMessage("Loading...");
+//            pd.setIndeterminate(false);
+//            pd.show();
+//        }
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//            super.onPostExecute(aVoid);
+//            pd.dismiss();
+//        }
+//
+//    }
+//
+//    void testConnect()
+//    {
+//        new GetData(getBaseContext()).execute();
+//        cd = new connectedInternet(getBaseContext().getApplicationContext());
+//
+//    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
