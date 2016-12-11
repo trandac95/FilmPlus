@@ -31,6 +31,6 @@
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="@color/colorgo" />
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/main_content" />
 
 </android.support.design.widget.CoordinatorLayout>

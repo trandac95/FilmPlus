@@ -5,6 +5,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import dph.com.filmplus.DPHView.VideoPlayerView;
+import dph.com.filmplus.R;
+
 /**
  * Created by Tran Dac on 07/12/2016.
  */
