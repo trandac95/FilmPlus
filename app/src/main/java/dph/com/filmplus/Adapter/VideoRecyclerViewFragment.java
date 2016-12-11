@@ -1,4 +1,7 @@
 package dph.com.filmplus.Adapter;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +13,7 @@ import android.widget.AbsListView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dph.com.filmplus.R;
 import dph.com.filmplus.calculator.DefaultSingleItemCalculatorCallback;
@@ -62,9 +66,11 @@ public class VideoRecyclerViewFragment extends Fragment {
 
         try {
             mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+            mList.add(ItemFactory.createItemFromURL("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", getActivity(), mVideoPlayerManager));
             mList.add(ItemFactory.createItemFromAsset("video1.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
             mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
             mList.add(ItemFactory.createItemFromAsset("video1.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+            mList.add(ItemFactory.createItemFromURL("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", getActivity(), mVideoPlayerManager));
             mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
             mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
             mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));

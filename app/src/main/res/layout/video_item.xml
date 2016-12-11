@@ -30,12 +30,6 @@
             android:id="@+id/title"
             android:layout_alignParentBottom="true"
             style="@style/BaseText"/>
-
-        <TextView
-            android:id="@+id/visibility_percents"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            style="@style/BaseText"/>
     </RelativeLayout>
 
 

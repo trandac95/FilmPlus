@@ -5,4 +5,6 @@
     <color name="colorAccent">#efa13b</color>
     <color name="colorgo">#900a0a</color>
     <color name="colorgou">#bf0707</color>
+    <color name="colortit">#303f9f</color>
+    <color name="colorname">#e36504</color>
 </resources>

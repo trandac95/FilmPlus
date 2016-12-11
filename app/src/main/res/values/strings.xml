@@ -5,4 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="dong">Đóng</string>
+    <string name="name_huy">Dương Trấn Huy</string>
+    <string name="name_phong">Nguyễn Thanh Phong</string>
 </resources>

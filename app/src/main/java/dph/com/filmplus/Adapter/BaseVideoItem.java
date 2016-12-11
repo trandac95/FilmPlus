@@ -126,7 +126,7 @@ public abstract class BaseVideoItem implements VideoItem, ListItem {
        VideoViewHolder videoViewHolder = (VideoViewHolder) currentView.getTag();
         String percentsText = "Visibility percents: " + String.valueOf(percents);
 
-        videoViewHolder.mVisibilityPercents.setText(percentsText);
+        //videoViewHolder.mVisibilityPercents.setText(percentsText);
     }
 
     private boolean viewIsPartiallyHiddenBottom(int height) {
