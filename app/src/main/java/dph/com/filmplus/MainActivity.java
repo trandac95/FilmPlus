@@ -50,14 +50,6 @@ public class MainActivity extends AppCompatActivity
                     .add(R.id.fragment_container, new VideoRecyclerViewFragment())
                     .commit();
         }
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -155,18 +147,17 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        // xem tat ca
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            // danh sach yeu thich
         } else if (id == R.id.nav_slideshow) {
-
+            // Xem online
         } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
+            // them video
         } else if (id == R.id.nav_send) {
+            // thong tin ung dung
             final Dialog dialog=new Dialog(MainActivity.this);
             dialog.setTitle("Thông tin ứng dụng");
             dialog.setContentView(R.layout.activity_info_product);

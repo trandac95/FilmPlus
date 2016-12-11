@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Xem tất cả" />
+            android:title="Xem từ điện thoại" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -18,23 +18,10 @@
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Thêm video" />
+        <item
+            android:id="@+id/nav_send"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Thông tin ứng dụng" />
     </group>
-
-    <item android:title="Thể loại">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Phim" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Hài" />
-            <item
-                android:id="@+id/nav_music"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Âm nhạc" />
-        </menu>
-    </item>
 
 </menu>

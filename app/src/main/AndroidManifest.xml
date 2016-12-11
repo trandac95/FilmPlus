@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FimlWatch"></activity>
+        <activity android:name=".FimlWatch" />
+        <activity android:name=".YoutubePlayer"></activity>
     </application>
-
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest>

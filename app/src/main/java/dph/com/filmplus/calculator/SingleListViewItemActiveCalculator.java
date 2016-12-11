@@ -25,7 +25,6 @@ import dph.com.filmplus.scroll_utils.ScrollDirectionDetector;
  *
  * Method {@link #onStateFling} is calling {@link Callback#deactivateCurrentItem}
  *
- * @author danylo.volokh
  */
 public class SingleListViewItemActiveCalculator extends BaseItemsVisibilityCalculator {
 

@@ -8,7 +8,6 @@ import dph.com.filmplus.calculator.ListItemsVisibilityCalculator;
  * A general interface for list items.
  * This interface is used by {@link ListItemsVisibilityCalculator}
  *
- * @author danylo.volokh
  */
 public interface ListItem {
     /**

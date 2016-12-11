@@ -4,11 +4,6 @@ import android.view.View;
 
 import dph.com.filmplus.items.ListItem;
 
-/**
- * Default implementation. You can override it and intercept switching between active items
- *
- * Created by danylo.volokh on 05.01.2016.
- */
 public class DefaultSingleItemCalculatorCallback implements SingleListViewItemActiveCalculator.Callback<ListItem>{
 
     @Override
