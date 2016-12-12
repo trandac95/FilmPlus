@@ -45,7 +45,7 @@ public class StreamVideoItem extends BaseVideoItem {
 
     @Override
     public void playNewVideo(MetaData currentItemMetaData, VideoPlayerView player, VideoPlayerManager<MetaData> videoPlayerManager) {
-        videoPlayerManager.playNewVideo(currentItemMetaData, player,URL);
+        videoPlayerManager.playNewVideo(currentItemMetaData, player, URL);
     }
 
     @Override

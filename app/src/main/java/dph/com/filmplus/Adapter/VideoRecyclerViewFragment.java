@@ -3,6 +3,7 @@ import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,15 +30,13 @@ import dph.com.filmplus.manager.VideoPlayerManager;
 import dph.com.filmplus.scroll_utils.ItemsPositionGetter;
 import dph.com.filmplus.scroll_utils.RecyclerViewItemPositionGetter;
 
-/**
- * This fragment shows of how to use {@link VideoPlayerManager} with a RecyclerView.
- */
+
 public class VideoRecyclerViewFragment extends Fragment {
     private final ArrayList<BaseVideoItem> mList = new ArrayList<>();
 
     /**
-     * Only the one (most visible) view should be active (and playing).
-     * To calculate visibility of views we use {@link SingleListViewItemActiveCalculator}
+     * Chỉ 1 video hiển thị rõ (nằm hoàn toàn trên màn hình) được kích hoạt và có thể phát
+     * Để tính toán vị trí mà video hiển thị trên màn hình, ta sử dụng {@link SingleListViewItemActiveCalculator}
      */
     private final ListItemsVisibilityCalculator mVideoVisibilityCalculator =
             new SingleListViewItemActiveCalculator(new DefaultSingleItemCalculatorCallback(), mList);
@@ -43,13 +45,13 @@ public class VideoRecyclerViewFragment extends Fragment {
     private LinearLayoutManager mLayoutManager;
 
     /**
-     * ItemsPositionGetter is used by {@link ListItemsVisibilityCalculator} for getting information about
-     * items position in the RecyclerView and LayoutManager
+     * ItemsPositionGetter được sử dụng bởi {@link ListItemsVisibilityCalculator} để lấy thông tin
+     * vị trí của các item trong RecyclerView và LayoutManager
      */
     private ItemsPositionGetter mItemsPositionGetter;
 
     /**
-     * Here we use {@link SingleVideoPlayerManager}, which means that only one video playback is possible.
+     * {@link SingleVideoPlayerManager}Chỉ 1 trình phát video được thiết lập
      */
     private final VideoPlayerManager<MetaData> mVideoPlayerManager = new SingleVideoPlayerManager(new PlayerItemChangeListener() {
         @Override
@@ -57,26 +59,54 @@ public class VideoRecyclerViewFragment extends Fragment {
 
         }
     });
-
+    String[] ss;
     private int mScrollState = AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
+    public void readData()
+    {
+        String data;
+        InputStream in = getResources().openRawResource(R.raw.link);
+        InputStreamReader inreader = new InputStreamReader(in);
+        BufferedReader buffreder = new BufferedReader(inreader);
+        StringBuilder builder=new StringBuilder();
+        if(in!=null)
+        {
+            try{
+                while ((data=buffreder.readLine())!=null)
+                {
+                    // spilit file video
+                    builder.append(data);
+                    builder.append("\n");
+                }
+                in.close();
+                ss = builder.toString().split("\n");
 
+            }
+            catch(IOException ex){
+
+            }
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        //readData();
         try {
-            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromURL("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromAsset("video1.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromAsset("video1.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromURL("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
-            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            for (String s:ss
+//                 ) {
+//                mList.add(ItemFactory.createItemFromURL(s, getActivity(), mVideoPlayerManager));
+//            }
+              mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromURL("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4", getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromURL("http://trandac.net/video/video1.mp4", getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
+//            mList.add(ItemFactory.createItemFromAsset("video_sample_4.mp4", R.drawable.video_sample_1_pic, getActivity(), mVideoPlayerManager));
             } catch (IOException e) {
             throw new RuntimeException(e);
         }

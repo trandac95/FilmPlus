@@ -3,12 +3,15 @@ package dph.com.filmplus;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -24,10 +27,13 @@ import android.widget.ListView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dph.com.filmplus.Adapter.SDCardVideoRecyclerFragment;
 import dph.com.filmplus.Adapter.VideoRecyclerViewFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -149,11 +155,15 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         // xem tat ca
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, new SDCardVideoRecyclerFragment())
+                    .commit();
         } else if (id == R.id.nav_gallery) {
             // danh sach yeu thich
         } else if (id == R.id.nav_slideshow) {
             // Xem online
+            loadFileList();
+            onCreateDialog(DIALOG_LOAD_FILE);
         } else if (id == R.id.nav_manage) {
             // them video
         } else if (id == R.id.nav_send) {
@@ -174,5 +184,57 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private String[] mFileList;
+    private File mPath = new File(Environment.getExternalStorageDirectory()+"//Downloads");
+    private String mChosenFile;
+    private static final String FTYPE = ".txt";
+    private static final String FTYPE2 = ".xml";
+    private static final int DIALOG_LOAD_FILE = 1000;
+
+    private void loadFileList() {
+        try {
+            mPath.mkdirs();
+        }
+        catch(SecurityException e) {
+        }
+        if(mPath.exists()) {
+            FilenameFilter filter = new FilenameFilter() {
+
+                @Override
+                public boolean accept(File dir, String filename) {
+                    File sel = new File(dir, filename);
+                    return filename.contains(FTYPE) || filename.contains(FTYPE2) || sel.isDirectory();
+                }
+
+            };
+            mFileList = mPath.list(filter);
+        }
+        else {
+            mFileList= new String[0];
+        }
+    }
+
+    protected Dialog onCreateDialog(int id) {
+        Dialog dialog = null;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        switch(id) {
+            case DIALOG_LOAD_FILE:
+                builder.setTitle("Chọn tập tin");
+                if(mFileList == null) {
+                    dialog = builder.create();
+                    return dialog;
+                }
+                builder.setItems(mFileList, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        mChosenFile = mFileList[which];
+
+                    }
+                });
+                break;
+        }
+        dialog = builder.show();
+        return dialog;
     }
 }
